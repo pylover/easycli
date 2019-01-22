@@ -3,6 +3,13 @@
 Command line interface for python application on top of the argparse 
 including sub-parsers.
 
+## Installation
+
+```bash
+pip install easycli
+```
+
+
 ## Quickstart
 
 `quickstart.py`

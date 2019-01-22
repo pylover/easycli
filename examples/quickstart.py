@@ -1,13 +1,3 @@
-# easycli
-
-Command line interface for python application on top of the argparse 
-including sub-parsers.
-
-## Quickstart
-
-`quickstart.py`
-
-```python
 from easycli import Root, SubCommand, Argument
 
 
@@ -60,20 +50,3 @@ class Main(Root):
 if __name__ == '__main__':
     Main()
 
-```
-
-```bash
-$ python quickstart.py
-usage: quickstart.py [-h] [-V] {sub-command1,completion} ...
-
-easycli example
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -V, --version         Show version
-
-Sub commands:
-  {sub-command1,completion}
-    sub-command1
-    completion          Bach auto completion using argcomplete python package.
-```

@@ -77,3 +77,19 @@ Sub commands:
     sub-command1
     completion          Bash auto completion using argcomplete python package.
 ```
+
+### Bash Auto Completion
+
+```bash
+$ python quickstart.py completion
+usage: quickstart.py completion [-h] {install,uninstall} ...
+
+optional arguments:
+  -h, --help           show this help message and exit
+
+Sub commands:
+  {install,uninstall}
+    install            Enables the autocompletion.
+    uninstall          Disables the autocompletion.
+```
+

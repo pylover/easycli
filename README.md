@@ -75,5 +75,5 @@ optional arguments:
 Sub commands:
   {sub-command1,completion}
     sub-command1
-    completion          Bach auto completion using argcomplete python package.
+    completion          Bash auto completion using argcomplete python package.
 ```

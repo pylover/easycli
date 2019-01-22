@@ -184,7 +184,7 @@ class CompletionUninstaller(SubCommand):
 
 class Completion(SubCommand):
     __command__ = 'completion'
-    __help__ = 'Bach auto completion using argcomplete python package.'
+    __help__ = 'Bash auto completion using argcomplete python package.'
     __arguments__ = [
         CompletionInstaller,
         CompletionUninstaller

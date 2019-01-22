@@ -22,6 +22,9 @@ setup(
         'argparse.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',  # This is important!
+    install_requires=[
+        'argcomplete'
+    ],
     packages=find_packages(),
     license='MIT',
     classifiers=[

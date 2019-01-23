@@ -1,3 +1,4 @@
+
 # easycli
 
 Command line interface for python application on top of the argparse 
@@ -83,6 +84,12 @@ Sub commands:
   {sub-command1,completion}
     sub-command1
     completion          Bash auto completion using argcomplete python package.
+```
+
+## ProgressBar
+![](examples/media/example_progressbar.gif)
+
+```python
 ```
 
 ### Bash Auto Completion

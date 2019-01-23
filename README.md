@@ -88,9 +88,11 @@ Sub commands:
 
 ## ProgressBar
 
-See [this](examples/progressbar.py) example.
+`progressbar.py`
+
 
 ![](examples/media/example_progressbar.gif)
+
 
 ```python
 ```

@@ -7,4 +7,3 @@ class Argument:
     def register(self, parser):
         return parser.add_argument(*self._args, **self._kwargs)
 
-

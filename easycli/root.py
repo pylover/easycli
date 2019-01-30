@@ -1,8 +1,7 @@
-import sys
 import argparse
+import sys
 import traceback
 from os import path
-
 
 from .command import Command
 
@@ -42,5 +41,4 @@ class Root(Command):
             prog=path.basename(sys.argv[0]),
             description=self.__help__
         )
-
 

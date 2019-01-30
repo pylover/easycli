@@ -1,6 +1,8 @@
-import re
 import os.path
+import re
+
 from setuptools import setup, find_packages
+
 
 # reading package's version (same way sqlalchemy does)
 with open(
@@ -37,5 +39,6 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development',
-        ]
-    )
+    ]
+)
+

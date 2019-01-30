@@ -113,7 +113,6 @@ class CompletionUninstaller(SubCommand):
         )
     ]
 
-
     def __call__(self, args):
         if 'VIRTUAL_ENV' in os.environ:
             if args.system_wide:
@@ -136,6 +135,7 @@ class CompletionUninstaller(SubCommand):
         result = self.uninstall_from_file(sourcefile)
         if not result:
             print_venv_restart_help()
+
         return result
 
     def uninstall_from_user(self):
@@ -181,7 +181,6 @@ class CompletionUninstaller(SubCommand):
             return 1
 
 
-
 class Completion(SubCommand):
     __command__ = 'completion'
     __help__ = 'Bash auto completion using argcomplete python package.'
@@ -189,5 +188,4 @@ class Completion(SubCommand):
         CompletionInstaller,
         CompletionUninstaller
     ]
-
 

@@ -1,4 +1,3 @@
-
 from .argument import Argument
 
 
@@ -42,7 +41,6 @@ class SubCommand(Command):
     def _create_parser(self):
         assert self.__command__, 'Please provide a name for your command' \
             ' using __command__ class attribute'
-
 
         parser = self._parent_subparsers.add_parser(
             self.__command__,

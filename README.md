@@ -85,6 +85,17 @@ Sub commands:
     completion          Bash auto completion using argcomplete python package.
 ```
 
+## ProgressBar
+
+`progressbar.py`
+
+
+![](examples/media/example_progressbar.gif)
+
+
+```python
+```
+
 ### Bash Auto Completion
 
 ```bash

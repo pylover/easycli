@@ -87,7 +87,18 @@ Sub commands:
 
 ## ProgressBar
 
-`progressbar.py`
+```python
+from easycli import ProgressBar 
+
+
+steps = 1000
+with ProgressBar(steps) as pb:
+	for i in range(steps):
+    	# Do what you want here
+        pb.increment()
+```
+
+For more information refer to [examples/progressbar.py](examples/progressbar.py)
 
 
 ![](examples/media/example_progressbar.gif)

@@ -1,3 +1,5 @@
+import time
+
 from easycli import Root, SubCommand, Argument, ProgressBar
 
 
@@ -20,6 +22,7 @@ class Main(Root):
             for i in range(length):
                 temp = temp + 1
                 pb.increment()
+                time.sleep(.1)
         return
 
 

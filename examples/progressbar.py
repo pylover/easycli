@@ -1,3 +1,5 @@
+import time
+
 from easycli import Root, ProgressBar
 
 
@@ -20,9 +22,9 @@ class Main(Root):
             for i in range(length):
                 temp = temp + 1
                 pb.increment()
+                time.sleep(.1)
         return
 
 
 if __name__ == '__main__':
     Main()
-

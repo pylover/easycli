@@ -85,17 +85,6 @@ Sub commands:
     completion          Bash auto completion using argcomplete python package.
 ```
 
-## ProgressBar
-
-`progressbar.py`
-
-
-![](examples/media/example_progressbar.gif)
-
-
-```python
-```
-
 ### Bash Auto Completion
 
 ```bash
@@ -110,4 +99,21 @@ Sub commands:
     install            Enables the autocompletion.
     uninstall          Disables the autocompletion.
 ```
+
+### ProgressBar
+
+```python
+from easycli import ProgressBar 
+
+
+steps = 100
+with ProgressBar(steps) as pb:
+    for i in range(steps):
+        # Do what you want here
+        pb.increment()
+```
+
+![](examples/media/example_progressbar.gif)
+
+For more information refer to [examples/progressbar.py](examples/progressbar.py)
 

@@ -1,6 +1,6 @@
 import time
 
-from easycli import Root, SubCommand, Argument, ProgressBar
+from easycli import Root, ProgressBar
 
 
 DEFAULT_TCP_PORT = 8585
@@ -28,4 +28,3 @@ class Main(Root):
 
 if __name__ == '__main__':
     Main()
-

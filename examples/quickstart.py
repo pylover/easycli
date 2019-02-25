@@ -31,7 +31,7 @@ class SubCommand1(SubCommand):
         print('Sub command 1, args:', args)
 
 
-class Main(Root):
+class Example(Root):
     __help__ = 'easycli example'
     __completion__ = True
     __arguments__ = [
@@ -47,6 +47,7 @@ class Main(Root):
         return super().__call__(args)
 
 
+
 if __name__ == '__main__':
-    Main()
+    Example().main()
 

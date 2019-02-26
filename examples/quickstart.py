@@ -36,7 +36,7 @@ class Example(Root):
     __completion__ = True
     __arguments__ = [
         Argument('-V', '--version', action='store_true', help='Show version'),
-        SubCommand1,
+        #SubCommand1,
     ]
 
     def __call__(self, args):

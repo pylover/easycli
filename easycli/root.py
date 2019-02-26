@@ -18,7 +18,6 @@ class Root(Command):
 
     @classmethod
     def _create_parser(self):
-        import pudb; pudb.set_trace()  # XXX BREAKPOINT
         return argparse.ArgumentParser(
             prog=path.basename(sys.argv[0]),
             description=self.__help__
@@ -29,7 +28,6 @@ class Root(Command):
             import argcomplete
             argcomplete.autocomplete(self._parser)
 
-        argv = argv or sys.argv
         args = self._parser.parse_args(argv)
 
         return args.func(args) if hasattr(args, 'func') else self(args)

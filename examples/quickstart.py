@@ -1,6 +1,9 @@
+#! /usr/bin/env python3
+
 from easycli import Root, SubCommand, Argument
 
 
+__version__ = '0.1.0'
 DEFAULT_TCP_PORT = 8585
 DEFAULT_HOST = 'WPP.local'
 
@@ -36,7 +39,7 @@ class Example(Root):
     __completion__ = True
     __arguments__ = [
         Argument('-V', '--version', action='store_true', help='Show version'),
-        #SubCommand1,
+        SubCommand1,
     ]
 
     def __call__(self, args):

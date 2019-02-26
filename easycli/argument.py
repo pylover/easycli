@@ -5,5 +5,6 @@ class Argument:
         self._kwargs = kw
 
     def register(self, parser):
+        from pudb import set_trace; set_trace()
         return parser.add_argument(*self._args, **self._kwargs)
 

@@ -28,7 +28,6 @@ class Root(Command):
         )
 
     def main(self, argv=None):
-        import pudb; pudb.set_trace()  # XXX BREAKPOINT
         argv = argv or sys.argv
         args = self._parser.parse_args(argv)
         return args.func(args) if hasattr(args, 'func') else self(args)

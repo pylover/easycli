@@ -116,5 +116,6 @@ with ProgressBar(steps) as pb:
         pb.increment()
 ```
 
-For more information refer to [examples/progressbar.py](examples/progressbar.py)
+See [examples/progressbar.py](examples/progressbar.py)
 
+![](examples/media/example_progressbar.gif)

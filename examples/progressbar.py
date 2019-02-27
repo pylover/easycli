@@ -14,17 +14,13 @@ class Main(Root):
     ]
 
     def __call__(self, args):
-
-        temp = 0
         length = 100
-
         with ProgressBar(length) as pb:
             for i in range(length):
-                temp = temp + 1
                 pb.increment()
-                time.sleep(.1)
+                time.sleep(0.1)
         return
 
 
 if __name__ == '__main__':
-    Main()
+    Main().main()

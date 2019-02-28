@@ -9,7 +9,7 @@ from .command import Command
 class Root(Command):
     __completion__ = None
 
-    def __init__(self, argv=None):
+    def __init__(self):
         if self.__completion__:
             from .completion import Completion
             self.__arguments__.append(Completion)
@@ -28,6 +28,7 @@ class Root(Command):
             import argcomplete
             argcomplete.autocomplete(self._parser)
 
+        # Actual argument parsing
         args = self._parser.parse_args(argv)
 
         return args.func(args) if hasattr(args, 'func') else self(args)

@@ -6,7 +6,6 @@ from bddcli import stdout, status, stderr, Application, Command, when
 class Foo(Root):
     __help__ = 'Foo Help'
     __command__ = 'foo'
-    __completion__ = True
 
     def __call__(self, args):
         print('foo done')

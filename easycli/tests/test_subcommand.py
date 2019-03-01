@@ -17,6 +17,7 @@ class Bar(SubCommand):
 class Foo(Root):
     __help__ = 'Foo Help'
     __command__ = 'foo'
+    __completion__ = True
     __arguments__ = [Bar]
 
 
@@ -24,16 +25,17 @@ def main():
     Foo().main()
 
 
-EXPECTED_HELP = '''usage: foo [-h] {bar} ...
+EXPECTED_HELP = '''usage: foo [-h] {bar,completion} ...
 
 Foo Help
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help        show this help message and exit
 
 Sub commands:
-  {bar}
-    bar       Bar help
+  {bar,completion}
+    bar             Bar help
+    completion      Bash auto completion using argcomplete python package.
 '''
 
 

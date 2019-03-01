@@ -19,5 +19,5 @@ deploy:
   on:
     tags: true
     distributions: sdist bdist_wheel
-    repo: pylover/bddcli
+    repo: pylover/easycli
     all_branches: true

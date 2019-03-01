@@ -117,7 +117,7 @@ class CompletionUninstaller(SubCommand):
         if 'VIRTUAL_ENV' in os.environ:
             if args.system_wide:
                 print(
-                    'The -s/--system-wide flag can not be used within ',
+                    'The -s/--system-wide flag can not be used within '
                     'virtualenv',
                     file=sys.stderr
                 )

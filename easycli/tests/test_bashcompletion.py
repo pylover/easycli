@@ -4,7 +4,7 @@ from os import path
 
 from easycli import Root, SubCommand, Argument
 
-from bddcli import stdout, status, stderr, Application, Command, when
+from bddcli import stdout, status, stderr, Application, Command, when, given
 
 
 
@@ -15,35 +15,34 @@ class Foo(Root):
 
 
 def main():
-    Foo().main()
+    return Foo().main()
 
 
-EXPECTED_HELP = '''usage: foo [-h] {completion} ...
-
-Foo Help
+EXPECTED_HELP = '''usage: foo completion [-h] {install,uninstall} ...
 
 optional arguments:
-  -h, --help    show this help message and exit
+  -h, --help           show this help message and exit
 
 Sub commands:
-  {completion}
-    completion  Bash auto completion using argcomplete python package.
+  {install,uninstall}
+    install            Enables the autocompletion.
+    uninstall          Disables the autocompletion.
 '''
 
 
 def test_bash_autocompletion_systemwide():
     app = Application('foo', 'easycli.tests.test_bashcompletion:main')
-    with Command(app, 'Test bash autocompletion'):
+    with Command(app, 'Test bash autocompletion', arguments=['completion']):
         assert stdout == EXPECTED_HELP
         assert status == 0
 
-        when('help', arguments=['-h'])
+        when('help', arguments=given + '-h')
         assert status == 0
         assert stderr == ''
         assert stdout == EXPECTED_HELP
 
-        when('Install completion', arguments=['completion', 'install'])
-        when('Un.nstall completion', arguments=['completion', 'uninstall'])
+        when('Install completion', arguments=given + 'install')
+        when('Uninstall completion', arguments=given + 'uninstall')
 
 
 def test_bash_autocompletion_virtualenv():
@@ -53,16 +52,20 @@ def test_bash_autocompletion_virtualenv():
         with Command(
             app,
             'Bash autocompletion inside virtual environment',
-            environ={'VIRTUAL_ENV': venvdir}
+            environ={'VIRTUAL_ENV': venvdir},
+            arguments=['completion']
         ):
             assert stdout == EXPECTED_HELP
             assert status == 0
 
-            when('help', arguments=['-h'])
-            assert status == 0
-            assert stderr == ''
-            assert stdout == EXPECTED_HELP
-
-            when('Install completion', arguments=['completion', 'install'])
-            when('Uninstall completion', arguments=['completion', 'uninstall'])
+            when(
+                'Install completion',
+                arguments=given + ['install', '-s']
+            )
+            assert stderr == 'The -s/--system-wide flag can not be used ' \
+                'within virtualenv\n'
+            assert status == 1
+#
+#            when('Install completion', arguments=['completion', 'install'])
+#            when('Uninstall completion', arguments=['completion', 'uninstall'])
 

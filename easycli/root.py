@@ -19,9 +19,12 @@ class Root(Command):
     @classmethod
     def _create_parser(self):
         return argparse.ArgumentParser(
-            prog=path.basename(sys.argv[0]),
+            prog=path.basename(self.__command__ or sys.argv[0]),
             description=self.__help__
         )
+
+    def _execute_subcommand(self, args):
+        return args.func(args)
 
     def main(self, argv=None):
         if self.__completion__:
@@ -31,5 +34,8 @@ class Root(Command):
         # Actual argument parsing
         args = self._parser.parse_args(argv)
 
-        return args.func(args) if hasattr(args, 'func') else self(args)
+        if hasattr(args, 'func'):
+            return self._execute_subcommand(args)
+        else:
+            return self(args)
 

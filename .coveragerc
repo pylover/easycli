@@ -1,6 +1,7 @@
 [run]
 omit =
 	easycli/completion.py
+	easycli/progressbar.py
 
 [report]
 # Regexes for lines to exclude from consideration

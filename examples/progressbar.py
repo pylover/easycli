@@ -14,11 +14,11 @@ class Main(Root):
     ]
 
     def __call__(self, args):
-        length = 100
+        length = 1000
         with ProgressBar(length) as pb:
             for i in range(length):
                 pb.increment()
-                time.sleep(0.1)
+                time.sleep(0.01)
         return
 
 

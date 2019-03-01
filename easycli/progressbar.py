@@ -62,29 +62,19 @@ class ProgressBar:
         return '%s%s' % ('#' * int(v), '.' * int(100 // scale - v))
 
     def get_progressbar_color(self):
-        percent = self.percent
-        if percent < 10:
-            return red
-        elif percent < 20:
-            return lightred
-        elif percent < 30:
-            return yellow
-        elif percent < 40:
-            return lightyellow
-        elif percent < 50:
-            return violet
-        elif percent < 60:
-            return lightviolet
-        elif percent < 70:
-            return beige
-        elif percent < 80:
-            return lightbeige
-        elif percent < 90:
-            return blue
-        elif percent < 100:
-            return lightblue
-        else:
-            return green
+        return [
+            red,
+            lightred,
+            yellow,
+            lightyellow,
+            violet,
+            lightviolet,
+            beige,
+            lightbeige,
+            blue,
+            lightblue,
+            green,
+        ][self.percent // 10]
 
     def _invalidate(self):
         detailed = \

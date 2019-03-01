@@ -1,6 +1,7 @@
 # easycli
 
 [![Build Status](https://travis-ci.org/pylover/easycli.svg?branch=master)](https://travis-ci.org/pylover/easycli)
+[![Coverage Status](https://coveralls.io/repos/github/pylover/easycli/badge.svg?branch=master)](https://coveralls.io/github/pylover/easycli?branch=master)
 
 Command line interface for python application on top of the argparse 
 including sub-parsers.

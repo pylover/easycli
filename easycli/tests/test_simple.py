@@ -1,6 +1,6 @@
 from easycli import Root
 
-from bddcli import stdout, status, stderr, Application, Command, when
+from bddcli import stdout, status, stderr, Application, Given, when
 
 
 class Foo(Root):
@@ -31,17 +31,17 @@ foo: error: unrecognized arguments: --invalid
 
 def test_simple():
     app = Application('foo', 'easycli.tests.test_simple:main')
-    with Command(app, 'Simple application without any argument'):
+    with Given(app):
         assert stderr == ''
         assert stdout == 'foo done\n'
         assert status == 0
 
-        when('help', arguments=['-h'])
+        when(['-h'])
         assert status == 0
         assert stderr == ''
         assert stdout == EXPECTED_HELP
 
-        when('Invalid arguments', arguments=['--invalid'])
+        when(['--invalid'])
         assert status == 2
         assert stderr == EXPECTED_USAGE
         assert stdout == ''

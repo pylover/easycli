@@ -1,6 +1,6 @@
 from easycli import Root, SubCommand, Argument
 
-from bddcli import stdout, status, stderr, Application, Command, when
+from bddcli import stdout, status, stderr, Application, Given, when
 
 
 class Bar(SubCommand):
@@ -39,21 +39,21 @@ Sub commands:
 
 def test_subcommand():
     app = Application('foo', 'easycli.tests.test_subcommand:main')
-    with Command(app, 'Subcommand application without any argument'):
+    with Given(app):
         assert stdout == EXPECTED_HELP
         assert status == 0
 
-        when('help', arguments=['-h'])
+        when(['-h'])
         assert status == 0
         assert stderr == ''
         assert stdout == EXPECTED_HELP
 
-        when('Run Subcommand without any argument', arguments=['bar'])
+        when(['bar'])
         assert stderr == ''
         assert stdout == 'Bar done: False\n'
         assert status == 0
 
-        when('Run Subcommand with argument', arguments=['bar', '--baz'])
+        when(['bar', '--baz'])
         assert stderr == ''
         assert stdout == 'Bar done: True\n'
         assert status == 0

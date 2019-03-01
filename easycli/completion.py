@@ -36,7 +36,7 @@ class CompletionInstaller(SubCommand):
 
             self.install_virtualenv()
 
-        elif args.system_wide:
+        elif args.system_wide:  # pragma: no cover
             self.install_systemwide()
 
         else:
@@ -76,7 +76,7 @@ class CompletionInstaller(SubCommand):
         print(f'The line:\n\n    {line}\nwas added into ' \
               f'{path.abspath(filename)}')
 
-    def install_systemwide(self):
+    def install_systemwide(self):  # pragma: no cover
         line = '# PYTHON_ARGCOMPLETE_OK'
         filename = sys.argv[0]
         with open(filename) as f:

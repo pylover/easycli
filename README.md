@@ -1,5 +1,7 @@
 # easycli
 
+[![Build Status](https://travis-ci.org/pylover/easycli.svg?branch=master)](https://travis-ci.org/pylover/easycli)
+
 Command line interface for python application on top of the argparse 
 including sub-parsers.
 

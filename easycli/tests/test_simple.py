@@ -23,6 +23,12 @@ optional arguments:
   -h, --help  show this help message and exit
 '''
 
+
+EXPECTED_USAGE = '''usage: foo [-h]
+foo: error: unrecognized arguments: --invalid
+'''
+
+
 def test_simple():
     app = Application('foo', 'easycli.tests.test_simple:main')
     with Command(app, 'Simple application without any argument'):
@@ -34,3 +40,8 @@ def test_simple():
         assert status == 0
         assert stderr == ''
         assert stdout == EXPECTED_HELP
+
+        when('Invalid arguments', arguments=['--invalid'])
+        assert status == 2
+        assert stderr == EXPECTED_USAGE
+        assert stdout == ''

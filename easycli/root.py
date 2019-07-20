@@ -8,6 +8,7 @@ from .command import Command
 
 class Root(Command):
     __completion__ = None
+    __abbreviation__ = None
 
     def __init__(self):
         if self.__completion__:
@@ -30,6 +31,10 @@ class Root(Command):
         if self.__completion__:
             import argcomplete
             argcomplete.autocomplete(self._parser)
+
+        #argv = argv or sys.argv
+        #if self.__abbreviation__:
+        #    argv = self._complete_abbreviations(argv)
 
         # Actual argument parsing
         args = self._parser.parse_args(argv)

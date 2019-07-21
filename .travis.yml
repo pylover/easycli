@@ -8,7 +8,7 @@ before_install:
 - pip install -U pip setuptools wheel
 - pip install -r requirements-ci.txt
 install: pip install -e .
-script: py.test --cov=easycli easycli/tests
+script: py.test --cov=easycli tests
 after_success: coveralls
 deploy:
   provider: pypi

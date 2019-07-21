@@ -32,10 +32,6 @@ class Root(Command):
             import argcomplete
             argcomplete.autocomplete(self._parser)
 
-        #argv = argv or sys.argv
-        #if self.__abbreviation__:
-        #    argv = self._complete_abbreviations(argv)
-
         # Actual argument parsing
         args = self._parser.parse_args(argv)
 

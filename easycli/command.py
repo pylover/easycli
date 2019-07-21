@@ -4,6 +4,7 @@ from .argument import Argument
 class Command:
     __arguments__ = []
     __command__ = None
+    __aliases__ = None
     __help__ = None
 
     def __init__(self):
@@ -42,10 +43,13 @@ class SubCommand(Command):
         assert self.__command__, 'Please provide a name for your command' \
             ' using __command__ class attribute'
 
-        parser = self._parent_subparsers.add_parser(
-            self.__command__,
-            help=self.__help__
+        kw = dict(
+            help=self.__help__,
         )
+        if self.__aliases__:
+            kw['aliases'] = self.__aliases__
+
+        parser = self._parent_subparsers.add_parser(self.__command__, **kw)
         parser.set_defaults(func=self)
         return parser
 

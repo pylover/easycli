@@ -38,7 +38,7 @@ Sub commands:
 
 
 def test_subcommand():
-    app = Application('foo', 'easycli.tests.test_subcommand:main')
+    app = Application('foo', 'tests.test_subcommand:main')
     with Given(app):
         assert stdout == EXPECTED_HELP
         assert status == 0

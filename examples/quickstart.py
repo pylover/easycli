@@ -10,6 +10,7 @@ DEFAULT_HOST = 'WPP.local'
 
 class SubCommand1(SubCommand):
     __command__ = 'sub-command1'
+    __aliases__ = ['sc', 'su', 's']
     __arguments__ = [
         Argument(
             '-V', '--version',

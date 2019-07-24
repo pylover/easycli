@@ -27,7 +27,7 @@ setup(
     install_requires=[
         'argcomplete'
     ],
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     license='MIT',
     classifiers=[
         'Environment :: Console',

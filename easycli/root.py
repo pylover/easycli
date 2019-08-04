@@ -17,6 +17,10 @@ class Root(Command):
 
         super().__init__()
 
+        if self.__completion__:
+            import argcomplete
+            argcomplete.autocomplete(self._parser)
+
     @classmethod
     def _create_parser(self):
         return argparse.ArgumentParser(
@@ -28,10 +32,6 @@ class Root(Command):
         return args.func(args)
 
     def main(self, argv=None):
-        if self.__completion__:
-            import argcomplete
-            argcomplete.autocomplete(self._parser)
-
         # Actual argument parsing
         args = self._parser.parse_args(argv)
 

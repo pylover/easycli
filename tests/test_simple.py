@@ -11,10 +11,6 @@ class Foo(Root):
         print('foo done')
 
 
-def main():
-    Foo().main()
-
-
 EXPECTED_HELP = '''usage: foo [-h]
 
 Foo Help
@@ -30,7 +26,7 @@ foo: error: unrecognized arguments: --invalid
 
 
 def test_simple():
-    app = Application('foo', 'tests.test_simple:main')
+    app = Application('foo', 'tests.test_simple:Foo.quickstart')
     with Given(app):
         assert stderr == ''
         assert stdout == 'foo done\n'

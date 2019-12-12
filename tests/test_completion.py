@@ -13,10 +13,6 @@ class Foo(Root):
     __completion__ = True
 
 
-def main():
-    return Foo().main()
-
-
 EXPECTED_HELP = '''usage: foo completion [-h] {install,uninstall} ...
 
 optional arguments:
@@ -30,7 +26,7 @@ Sub commands:
 
 
 def test_bash_autocompletion_virtualenv():
-    app = Application('foo', 'tests.test_completion:main')
+    app = Application('foo', 'tests.test_completion:Foo.quickstart')
     with tempfile.TemporaryDirectory() as venvdir:
         os.mkdir(path.join(venvdir, 'bin'))
         with Given(app, ['completion'], environ={'VIRTUAL_ENV': venvdir}):
@@ -51,7 +47,7 @@ def test_bash_autocompletion_virtualenv():
 
 
 def test_bash_autocompletion_user():
-    app = Application('foo', 'tests.test_completion:main')
+    app = Application('foo', 'tests.test_completion:Foo.quickstart')
     with tempfile.TemporaryDirectory() as homedir:
         os.mkdir(path.join(homedir, 'bin'))
         with Given(app, ['completion'], environ={'HOME': homedir}):

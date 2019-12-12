@@ -8,7 +8,6 @@ from .command import Command
 
 class Root(Command):
     __completion__ = None
-    __abbreviation__ = None
 
     def __init__(self):
         if self.__completion__:
@@ -32,11 +31,15 @@ class Root(Command):
         return args.func(args)
 
     def main(self, argv=None):
-        # Actual argument parsing
+        # Parse Argument
         args = self._parser.parse_args(argv)
 
         if hasattr(args, 'func'):
             return self._execute_subcommand(args)
         else:
             return self(args)
+
+    @classmethod
+    def quickstart(cls, argv=None):
+        return cls().main(argv)
 

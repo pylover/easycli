@@ -21,10 +21,6 @@ class Foo(Root):
     __arguments__ = [Bar]
 
 
-def main():
-    Foo().main()
-
-
 EXPECTED_HELP = '''\
 usage: foo [-h] {bar,b,ba} ...
 
@@ -41,7 +37,7 @@ Sub commands:
 
 
 def test_subcommand():
-    app = Application('foo', 'tests.test_subcommand:main')
+    app = Application('foo', 'tests.test_subcommand:Foo.quickstart')
     with Given(app):
         assert stdout == EXPECTED_HELP
         assert status == 0

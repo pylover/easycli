@@ -72,6 +72,8 @@ class Example(Root):
 
 
 if __name__ == '__main__':
+    Example.quickstart()  # Just a shortcut for the main instance method.
+    # Or
     Example().main()
 ```
 

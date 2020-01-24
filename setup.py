@@ -1,22 +1,17 @@
-import os.path
 import re
+from os.path import join, dirname
 
 from setuptools import setup, find_packages
 
 
 # reading package's version (same way sqlalchemy does)
-with open(
-    os.path.join(os.path.dirname(__file__), 'easycli', '__init__.py')
-) as v_file:
-    package_version = \
-        re.compile('.*__version__ = \'(.*?)\'', re.S)\
-        .match(v_file.read())\
-        .group(1)
+with open(join(dirname(__file__), 'easycli', '__init__.py')) as f:
+    version = re.match(".*__version__ = '(.*?)'", f.read(), re.S).group(1)
 
 
 setup(
     name='easycli',
-    version=package_version,
+    version=version,
     author='Vahid Mardani',
     author_email='vahid.mardani@gmail.com',
     url='http://github.com/pylover/easycli',

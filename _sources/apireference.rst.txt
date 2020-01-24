@@ -10,6 +10,13 @@ Command Class
 
 .. autoclass:: Command
 
+   .. autoattribute:: __arguments__
+   .. autoattribute:: __command__
+   .. autoattribute:: __aliases__
+   .. autoattribute:: __help__
+
+   .. automethod:: __call__
+
 
 SubCommand Class
 ^^^^^^^^^^^^^^^^ 

@@ -34,7 +34,43 @@
 <dl class="class">
 <dt id="easycli.Command">
 <em class="property">class </em><code class="sig-prename descclassname">easycli.</code><code class="sig-name descname">Command</code><a class="headerlink" href="#easycli.Command" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Base class for all commands</p>
+<dl class="attribute">
+<dt id="easycli.Command.__arguments__">
+<code class="sig-name descname">__arguments__</code><em class="property"> = []</em><a class="headerlink" href="#easycli.Command.__arguments__" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of both <a class="reference internal" href="#easycli.Command" title="easycli.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a> class or instance of <a class="reference internal" href="#easycli.Argument" title="easycli.Argument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Argument</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="easycli.Command.__command__">
+<code class="sig-name descname">__command__</code><em class="property"> = None</em><a class="headerlink" href="#easycli.Command.__command__" title="Permalink to this definition">¶</a></dt>
+<dd><p>str, command name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="easycli.Command.__aliases__">
+<code class="sig-name descname">__aliases__</code><em class="property"> = None</em><a class="headerlink" href="#easycli.Command.__aliases__" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of aliases for the <a class="reference internal" href="#easycli.Command.__command__" title="easycli.Command.__command__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__command__</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="easycli.Command.__help__">
+<code class="sig-name descname">__help__</code><em class="property"> = None</em><a class="headerlink" href="#easycli.Command.__help__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Help message to show when -h/–help</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="easycli.Command.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">args</em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Command.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – What <a class="reference external" href="https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser.parse_args" title="(in Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">argparse.ArgumentParser.parse_args()</span></code></a> returns.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 </div>
 <div class="section" id="subcommand-class">
@@ -58,7 +94,15 @@
 <dl class="class">
 <dt id="easycli.Argument">
 <em class="property">class </em><code class="sig-prename descclassname">easycli.</code><code class="sig-name descname">Argument</code><span class="sig-paren">(</span><em class="sig-param">*a</em>, <em class="sig-param">completer=None</em>, <em class="sig-param">**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Argument" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Just a wrapper arround <a class="reference external" href="https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser.add_argument" title="(in Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">argparse.ArgumentParser.add_argument()</span></code></a>.</p>
+<p>So, except the <code class="docutils literal notranslate"><span class="pre">completer</span></code> keyword argument all positional ans keywork
+arguments are the same as the <a class="reference external" href="https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser.add_argument" title="(in Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">argparse.ArgumentParser.add_argument()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>completer</strong> – see <a class="reference external" href="https://argcomplete.readthedocs.io/en/latest/index.html#specifying-completers">argcomplete</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="progressbar-class">

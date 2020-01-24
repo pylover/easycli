@@ -14,7 +14,6 @@ Command Class
    .. autoattribute:: __command__
    .. autoattribute:: __aliases__
    .. autoattribute:: __help__
-
    .. automethod:: __call__
 
 
@@ -22,12 +21,13 @@ SubCommand Class
 ^^^^^^^^^^^^^^^^ 
 
 .. autoclass:: SubCommand
-
+   :show-inheritance:
 
 Root Class
 ^^^^^^^^^^
 
 .. autoclass:: Root
+   :show-inheritance:
 
 
 Argument Class

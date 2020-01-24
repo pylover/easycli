@@ -51,6 +51,38 @@ class Command:
 
 
 class SubCommand(Command):
+    """Base class for sub commands:
+
+    .. code-block:: bash
+
+       root subcommand subsubcommand
+
+    For example, in ``git push ..`` scenario ``push`` is a sub command.
+
+    Users must inherit this class and configure the sub class to create new
+    shell sub command behavior.
+
+    .. code-block::
+
+       from easycli import SubCommand, Root
+
+
+       class Push(SubCommand):
+           __command__ = 'push'
+           __aliases__ = ['p', 'pu']
+           __arguments__ = [
+               ...
+           ]
+
+
+       class Git(Root):
+           ...
+           __arguments__ = [
+               Push,
+               ...
+           ]
+    """
+
     def __init__(self, subparsers):
         self._parent_subparsers = subparsers
         super().__init__()

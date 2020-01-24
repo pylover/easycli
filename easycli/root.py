@@ -7,6 +7,29 @@ from .command import Command
 
 
 class Root(Command):
+    """base class for the CLI entry point.
+
+    .. code-block::
+
+       import sys
+
+       from easycli import Root, ...
+
+
+       class Git(Root):
+           __help__ = 'git help message'
+           __arguments__ = [
+               Pull,
+               Push,
+               Commit,
+               ...
+           ]
+
+       if __name__ == '__main__':
+           git = Git()
+           sys.exit(git.main())
+
+    """
     __completion__ = None
 
     def __init__(self):

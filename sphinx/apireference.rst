@@ -23,11 +23,16 @@ SubCommand Class
 .. autoclass:: SubCommand
    :show-inheritance:
 
+
 Root Class
 ^^^^^^^^^^
 
 .. autoclass:: Root
    :show-inheritance:
+
+   .. autoattribute:: __completion__
+   .. automethod:: main
+   .. automethod:: quickstart
 
 
 Argument Class

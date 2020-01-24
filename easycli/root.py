@@ -18,6 +18,7 @@ class Root(Command):
 
        class Git(Root):
            __help__ = 'git help message'
+           __completion__ = True
            __arguments__ = [
                Pull,
                Push,
@@ -26,11 +27,14 @@ class Root(Command):
            ]
 
        if __name__ == '__main__':
-           git = Git()
-           sys.exit(git.main())
+           sys.exit(Git.quickstart())
 
     """
+
     __completion__ = None
+    """If True, a completion sub-command with two subsub-commands: install and
+    uninstall will be added to ``self.__arguments__`` collection.
+    """
 
     def __init__(self):
         if self.__completion__:
@@ -54,6 +58,11 @@ class Root(Command):
         return args.func(args)
 
     def main(self, argv=None):
+        """Call this function as the main entry point for your cli application
+
+        :param argv: If not given, :attr:`sys.argv` will be used.
+        :return: exit status
+        """
         # Parse Argument
         args = self._parser.parse_args(argv)
 
@@ -64,5 +73,7 @@ class Root(Command):
 
     @classmethod
     def quickstart(cls, argv=None):
+        """Shorthand for ``Root().main()``
+        """
         return cls().main(argv)
 

@@ -1,9 +1,10 @@
+from abc import ABCMeta
+
 from .argument import Argument
 
 
-class Command:
-    """Base class for all commands
-
+class Command(metaclass=ABCMeta):
+    """Abstract base class for all commands.
     """
 
     #: List of both :class:`.Command` class or instance of :class:`.Argument`

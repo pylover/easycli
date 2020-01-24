@@ -14,6 +14,17 @@ def terminal_size():
 
 
 class ProgressBar:
+    """Context manager to show and update progress bar.
+
+    .. code-block::
+
+       with ProgressBar(1000) as p:
+           for i in range(1000):
+               ...
+               # Step forward
+               p.increment()
+
+    """
 
     def __init__(self, total):
         self._value = 0

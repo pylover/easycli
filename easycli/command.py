@@ -2,9 +2,20 @@ from .argument import Argument
 
 
 class Command:
+    """Base class for all commands
+
+    """
+
+    #: List of both :class:`.Command` class or instance of :class:`.Argument`
     __arguments__ = []
+
+    #: str, command name
     __command__ = None
+
+    #: List of aliases for the :attr:`.__command__`
     __aliases__ = None
+
+    #: Help message to show when -h/--help
     __help__ = None
 
     def __init__(self):
@@ -30,6 +41,11 @@ class Command:
         raise NotImplementedError()
 
     def __call__(self, args):
+        """Executes the command
+
+        :param args: What :meth:`argparse.ArgumentParser.parse_args` returns.
+        """
+
         if self._parser:
             self._parser.print_help()
 

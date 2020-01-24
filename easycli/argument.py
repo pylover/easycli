@@ -1,5 +1,13 @@
 
 class Argument:
+    """Just a wrapper arround :meth:`argparse.ArgumentParser.add_argument`.
+
+    So, except the ``completer`` keyword argument all positional ans keywork
+    arguments are the same as the :meth:`argparse.ArgumentParser.add_argument`.
+
+    :param completer: see `argcomplete <https://argcomplete.readthedocs.io/en/latest/index.html#specifying-completers>`_
+    """
+
     completer = None
     def __init__(self, *a, completer=None, **kw):
         self._args = a

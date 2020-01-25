@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tutorial: Todo List &#8212; easycli 1.5.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="apireference.html" />
+    <link rel="prev" title="Welcome to easycli’s documentation!" href="index.html" />
+    <link href="_static/style.css" rel="stylesheet" type="text/css">
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-todo-list">
+<h1>Tutorial: Todo List<a class="headerlink" href="#tutorial-todo-list" title="Permalink to this headline">¶</a></h1>
+<p>Let’s develop a todo list using <code class="docutils literal notranslate"><span class="pre">easycli</span></code>.</p>
+<p>it’s highly recommended to use virtual environment before continue. I use
+<a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/">virtualenvwrapper</a>.</p>
+<p>Create a virtual environment to isolate your hello world application from the
+rest of the system python packages.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkvirtualenv todo
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>workon todo
+</pre></div>
+</div>
+<p>For the first, we’re going to create a classic python module including a
+<code class="docutils literal notranslate"><span class="pre">setup.py</span></code> to be able to install it.</p>
+<p>Create a directory named <code class="docutils literal notranslate"><span class="pre">todo</span></code> containing a python module named <code class="docutils literal notranslate"><span class="pre">todo.py</span></code>
+:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">easycli</span>
+
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;0.1.0&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">Todo</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">Root</span><span class="p">):</span>
+    <span class="n">__help__</span> <span class="o">=</span> <span class="s1">&#39;Simple todo list&#39;</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span>
+            <span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show version&#39;</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">dirname</span>
+
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;todo.py&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;.*__version__ = </span><span class="se">\&#39;</span><span class="s1">(.*?)</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;easycli&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;todo&#39;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span>
+    <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;todo&#39;</span><span class="p">],</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="n">dependencies</span><span class="p">,</span>
+    <span class="n">include_package_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;MIT&#39;</span><span class="p">,</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;todo = todo:Todo.quickstart&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">setuptools</span></code> offers an argument <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/setuptools.html#new-and-changed-setup-keywords">entry_points</a>
+which is helpful here.</p>
+</div>
+<p>Then install your project in editable mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /path/to/todo
+pip3 install -e .
+</pre></div>
+</div>
+<p>Test your command line interface with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>todo --help
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">todo</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span>
+
+<span class="n">Simple</span> <span class="n">todo</span> <span class="nb">list</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>     <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>  <span class="n">Show</span> <span class="n">version</span>
+</pre></div>
+</div>
+<p>Test the <code class="docutils literal notranslate"><span class="pre">-v/--version</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">todo</span> <span class="o">-</span><span class="n">v</span>
+<span class="n">todo</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<div class="section" id="append-command">
+<h2>Append Command<a class="headerlink" href="#append-command" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">functools</span></code> helps to keep our code <code class="docutils literal notranslate"><span class="pre">DRY</span></code>. Here is how to create a command
+to append a line <code class="docutils literal notranslate"><span class="pre">list,item</span></code> to a csv file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">dirname</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="n">opendbfile</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="nb">open</span><span class="p">,</span>
+    <span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Append</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">SubCommand</span><span class="p">):</span>
+    <span class="n">__command__</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span>
+    <span class="n">__aliases__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span>
+            <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;List name&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span>
+            <span class="s1">&#39;item&#39;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Item name&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">opendbfile</span><span class="p">(</span><span class="s1">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{args.list}</span><span class="s1">,</span><span class="si">{args.item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add the <code class="docutils literal notranslate"><span class="pre">Append</span></code> command class to <code class="docutils literal notranslate"><span class="pre">Todo.__arguments__</span></code> collection without
+instantiate it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Todo</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">Root</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">Append</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>Now, see the newly added command (<code class="docutils literal notranslate"><span class="pre">append</span></code> and it’s aliases: <code class="docutils literal notranslate"><span class="pre">add,a</span></code>)
+in <code class="docutils literal notranslate"><span class="pre">-h/--help</span></code> output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">todo</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">todo</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">{</span><span class="n">append</span><span class="p">,</span><span class="n">add</span><span class="p">,</span><span class="n">a</span><span class="p">}</span> <span class="o">...</span>
+
+<span class="n">Simple</span> <span class="n">todo</span> <span class="nb">list</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>    <span class="n">Show</span> <span class="n">version</span>
+
+<span class="n">Sub</span> <span class="n">commands</span><span class="p">:</span>
+  <span class="p">{</span><span class="n">append</span><span class="p">,</span><span class="n">add</span><span class="p">,</span><span class="n">a</span><span class="p">}</span>
+    <span class="n">append</span> <span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add an item using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">todo</span> <span class="n">append</span> <span class="n">foo</span> <span class="n">bar</span>
+<span class="c1"># Or</span>
+<span class="n">todo</span> <span class="n">add</span> <span class="n">foo</span> <span class="n">bar</span>
+<span class="c1"># Or</span>
+<span class="n">todo</span> <span class="n">a</span> <span class="n">foo</span> <span class="n">bar</span>
+</pre></div>
+</div>
+<p>Let’s modify our code and use functools to create a reusable
+<a class="reference internal" href="apireference.html#easycli.Argument" title="easycli.Argument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Argument</span></code></a> factory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ListArgument</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">,</span>
+    <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;List name&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">ItemArgument</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">,</span>
+    <span class="s1">&#39;item&#39;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Item name&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Append</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">SubCommand</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ListArgument</span><span class="p">(),</span>
+        <span class="n">ItemArgument</span><span class="p">(),</span>
+    <span class="p">]</span>
+
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-command">
+<h2>Show Command<a class="headerlink" href="#show-command" title="Permalink to this headline">¶</a></h2>
+<p>We need a command to show <code class="docutils literal notranslate"><span class="pre">lists</span></code> or <code class="docutils literal notranslate"><span class="pre">items</span></code> inside a <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getall</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">opendbfile</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Show</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">SubCommand</span><span class="p">):</span>
+    <span class="n">__command__</span> <span class="o">=</span> <span class="s1">&#39;show&#39;</span>
+    <span class="n">__aliases__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">]</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ListArgument</span><span class="p">(</span><span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">args</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{l}</span><span class="se">\t</span><span class="si">{i}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add the <code class="docutils literal notranslate"><span class="pre">Show</span></code> command class to <code class="docutils literal notranslate"><span class="pre">Todo.__arguments__</span></code> collection without
+instantiate it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Todo</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">Root</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">Append</span><span class="p">,</span>
+        <span class="n">Show</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>Test it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">todo</span> <span class="n">show</span>
+<span class="n">todo</span> <span class="n">show</span> <span class="n">foo</span>
+<span class="c1"># Or</span>
+<span class="n">todo</span> <span class="n">l</span>
+<span class="n">todo</span> <span class="n">l</span> <span class="n">foo</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-command">
+<h2>Delete Command<a class="headerlink" href="#delete-command" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Delete</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">SubCommand</span><span class="p">):</span>
+    <span class="n">__command__</span> <span class="o">=</span> <span class="s1">&#39;delete&#39;</span>
+    <span class="n">__aliases__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">]</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ListArgument</span><span class="p">(),</span>
+        <span class="n">ItemArgument</span><span class="p">(),</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="n">list_</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">list</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">item</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">l</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span> <span class="o">!=</span> <span class="n">list_</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">item</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">opendbfile</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{l}</span><span class="s1">,</span><span class="si">{i}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">Todo</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">Root</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">Append</span><span class="p">,</span>
+        <span class="n">Show</span><span class="p">,</span>
+        <span class="n">Delete</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>Now, you can add, show and <code class="docutils literal notranslate"><span class="pre">delete</span></code> your todo items.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">todo</span> <span class="n">delete</span> <span class="n">foo</span> <span class="n">bar</span>
+<span class="n">todo</span> <span class="n">d</span> <span class="n">foo</span> <span class="n">bar</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="completion">
+<h2>Completion<a class="headerlink" href="#completion" title="Permalink to this headline">¶</a></h2>
+<p>I love bash auto completion.</p>
+<p>So, the first step to do that is to set the <code class="docutils literal notranslate"><span class="pre">__completion__</span></code> class attribute
+of the <code class="docutils literal notranslate"><span class="pre">Todo</span></code> class.</p>
+<p>Thanks to <a class="reference external" href="http://localhost:8082/quickstart.html">Argcomplete</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Todo</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">Root</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">__completion__</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Take a look at the help message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">todo</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">{</span><span class="n">append</span><span class="p">,</span><span class="n">add</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">show</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">delete</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">completion</span><span class="p">}</span> <span class="o">...</span>
+
+<span class="n">Simple</span> <span class="n">todo</span> <span class="nb">list</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>         <span class="n">Show</span> <span class="n">version</span>
+
+<span class="n">Sub</span> <span class="n">commands</span><span class="p">:</span>
+  <span class="p">{</span><span class="n">append</span><span class="p">,</span><span class="n">add</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">show</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">delete</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">completion</span><span class="p">}</span>
+    <span class="n">append</span> <span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">show</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+    <span class="n">delete</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">completion</span>          <span class="n">Bash</span> <span class="n">auto</span> <span class="n">completion</span> <span class="n">using</span> <span class="n">argcomplete</span> <span class="n">python</span> <span class="n">package</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>As you see the <code class="docutils literal notranslate"><span class="pre">completion</span></code> sub command has been added.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">todo</span> <span class="n">completion</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">todo</span> <span class="n">completion</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">{</span><span class="n">install</span><span class="p">,</span><span class="n">uninstall</span><span class="p">}</span> <span class="o">...</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+
+<span class="n">Sub</span> <span class="n">commands</span><span class="p">:</span>
+  <span class="p">{</span><span class="n">install</span><span class="p">,</span><span class="n">uninstall</span><span class="p">}</span>
+    <span class="n">install</span>            <span class="n">Enables</span> <span class="n">the</span> <span class="n">autocompletion</span><span class="o">.</span>
+    <span class="n">uninstall</span>          <span class="n">Disables</span> <span class="n">the</span> <span class="n">autocompletion</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>There is how to enable the bash auto completion</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">todo</span> <span class="n">completion</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>After this, to reload and apply changes you need to <code class="docutils literal notranslate"><span class="pre">deactivate</span></code> and
+<code class="docutils literal notranslate"><span class="pre">activate</span></code> your virtual env again.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># virtualenvwrapper</span>
+<span class="n">deactivate</span> <span class="o">&amp;&amp;</span> <span class="n">workon</span> <span class="n">todo</span>
+</pre></div>
+</div>
+<p>Type <code class="docutils literal notranslate"><span class="pre">todo</span></code> and hit the <code class="docutils literal notranslate"><span class="pre">TAB</span></code> key twice to see the result.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ todo
+a       append      d         -h        l      show    --version
+add     completion  delete    --help    s      -v
+</pre></div>
+</div>
+</div>
+<div class="section" id="dynamic-autocompletion">
+<h2>Dynamic Autocompletion<a class="headerlink" href="#dynamic-autocompletion" title="Permalink to this headline">¶</a></h2>
+<p>How about implement auto completion for <code class="docutils literal notranslate"><span class="pre">list</span></code> and or <code class="docutils literal notranslate"><span class="pre">items</span></code>.</p>
+<p>We have to write two functions for get available lists and items.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">listcompleter</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">itemcompleter</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">):</span>
+    <span class="n">list_</span> <span class="o">=</span> <span class="n">parsed_args</span><span class="o">.</span><span class="n">list</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">list_</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Thne modify our arguments to use those functions as their completers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ListArgument</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">,</span>
+    <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;List name&#39;</span><span class="p">,</span>
+    <span class="n">completer</span><span class="o">=</span><span class="n">listcompleter</span>
+<span class="p">)</span>
+
+
+<span class="n">ItemArgument</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">,</span>
+    <span class="s1">&#39;item&#39;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Item name&#39;</span><span class="p">,</span>
+    <span class="n">completer</span><span class="o">=</span><span class="n">itemcompleter</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the complete version of the <code class="docutils literal notranslate"><span class="pre">todo.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">dirname</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="kn">import</span> <span class="nn">easycli</span>
+
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;0.1.0&#39;</span>
+
+
+<span class="n">opendbfile</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="nb">open</span><span class="p">,</span>
+    <span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">getall</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">opendbfile</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">listcompleter</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">itemcompleter</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">):</span>
+    <span class="n">list_</span> <span class="o">=</span> <span class="n">parsed_args</span><span class="o">.</span><span class="n">list</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">list_</span><span class="p">)</span>
+
+
+<span class="n">ListArgument</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">,</span>
+    <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;List name&#39;</span><span class="p">,</span>
+    <span class="n">completer</span><span class="o">=</span><span class="n">listcompleter</span>
+<span class="p">)</span>
+
+
+<span class="n">ItemArgument</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+    <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">,</span>
+    <span class="s1">&#39;item&#39;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Item name&#39;</span><span class="p">,</span>
+    <span class="n">completer</span><span class="o">=</span><span class="n">itemcompleter</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Delete</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">SubCommand</span><span class="p">):</span>
+    <span class="n">__command__</span> <span class="o">=</span> <span class="s1">&#39;delete&#39;</span>
+    <span class="n">__aliases__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">]</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ListArgument</span><span class="p">(),</span>
+        <span class="n">ItemArgument</span><span class="p">(),</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="n">list_</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">list</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">item</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">l</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span> <span class="o">!=</span> <span class="n">list_</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">item</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">opendbfile</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{l}</span><span class="s1">,</span><span class="si">{i}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Append</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">SubCommand</span><span class="p">):</span>
+    <span class="n">__command__</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span>
+    <span class="n">__aliases__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ListArgument</span><span class="p">(),</span>
+        <span class="n">ItemArgument</span><span class="p">(),</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">opendbfile</span><span class="p">(</span><span class="s1">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{args.list}</span><span class="s1">,</span><span class="si">{args.item}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Show</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">SubCommand</span><span class="p">):</span>
+    <span class="n">__command__</span> <span class="o">=</span> <span class="s1">&#39;show&#39;</span>
+    <span class="n">__aliases__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">]</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ListArgument</span><span class="p">(</span><span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">args</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">getall</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{l}</span><span class="se">\t</span><span class="si">{i}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Todo</span><span class="p">(</span><span class="n">easycli</span><span class="o">.</span><span class="n">Root</span><span class="p">):</span>
+    <span class="n">__help__</span> <span class="o">=</span> <span class="s1">&#39;Simple todo list&#39;</span>
+    <span class="n">__completion__</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">easycli</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span>
+            <span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show version&#39;</span>
+        <span class="p">),</span>
+        <span class="n">Append</span><span class="p">,</span>
+        <span class="n">Show</span><span class="p">,</span>
+        <span class="n">Delete</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Enjoy your very own todo list.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">easycli</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial: Todo List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#append-command">Append Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#show-command">Show Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delete-command">Delete Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#completion">Completion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic-autocompletion">Dynamic Autocompletion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apireference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to easycli’s documentation!</a></li>
+      <li>Next: <a href="apireference.html" title="next chapter">API Reference</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <span id="forkongithub">
+      <a class="desktop" href="https://github.com/pylover/easycli">Fork me on GitHub</a>
+      <a class="mobile" href="https://github.com/pylover/easycli">Source</a>
+    </span>
+
+  </body>
+</html>

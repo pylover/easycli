@@ -14,7 +14,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Quick Start" href="quickstart.html" />
+    <link rel="next" title="Tutorial: Todo List" href="tutorial.html" />
     <link href="_static/style.css" rel="stylesheet" type="text/css">
 
   </head><body>
@@ -33,12 +33,42 @@
 <a class="reference external image-reference" href="https://travis-ci.org/pylover/easycli"><img alt="https://travis-ci.org/pylover/easycli.svg?branch=master" src="https://travis-ci.org/pylover/easycli.svg?branch=master" /></a>
 <a class="reference external image-reference" href="https://coveralls.io/github/pylover/easycli?branch=master"><img alt="https://coveralls.io/repos/github/pylover/easycli/badge.svg?branch=master" src="https://coveralls.io/repos/github/pylover/easycli/badge.svg?branch=master" /></a>
 <a class="reference external image-reference" href="https://python.org"><img alt="https://img.shields.io/badge/Python-%3E%3D3.6-blue" src="https://img.shields.io/badge/Python-%3E%3D3.6-blue" /></a>
+<p>Just a wrapper arround python <code class="docutils literal notranslate"><span class="pre">argparse</span></code> module to easily develop nested
+command line applications with autocompletion support like <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">easycli</span> <span class="kn">import</span> <span class="n">Root</span><span class="p">,</span> <span class="n">Argument</span>
+
+
+<span class="k">class</span> <span class="nc">MyApp</span><span class="p">(</span><span class="n">Root</span><span class="p">):</span>
+    <span class="n">__completion__</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">__help__</span> <span class="o">=</span> <span class="s1">&#39;...&#39;</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;0.1.0&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">MyApp</span><span class="o">.</span><span class="n">quickstart</span><span class="p">()</span>
+</pre></div>
+</div>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cookbook.html">Cookbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial: Todo List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#append-command">Append Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#show-command">Show Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#delete-command">Delete Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#completion">Completion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#dynamic-autocompletion">Dynamic Autocompletion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="apireference.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="apireference.html#command-class">Command Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="apireference.html#subcommand-class">SubCommand Class</a></li>
@@ -78,8 +108,7 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cookbook.html">Cookbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial: Todo List</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apireference.html">API Reference</a></li>
 </ul>
 
@@ -87,7 +116,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="quickstart.html" title="next chapter">Quick Start</a></li>
+      <li>Next: <a href="tutorial.html" title="next chapter">Tutorial: Todo List</a></li>
   </ul></li>
 </ul>
 </div>

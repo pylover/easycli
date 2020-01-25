@@ -15,7 +15,10 @@ Welcome to easycli's documentation!
 .. image:: https://coveralls.io/repos/github/pylover/easycli/badge.svg?branch=master
    :target: https://coveralls.io/github/pylover/easycli?branch=master
 
-Python >= 3.6
+.. image:: https://img.shields.io/badge/Python-%3E%3D3.6-blue
+   :target: https://python.org
+
+
 
 Contents
 ********

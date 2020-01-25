@@ -587,3 +587,6 @@ This is the complete version of the ``todo.py``:
 
 Enjoy your very own todo list.
 
+The complete code is available as a python project on github: 
+`easycli-todolist-demo <https://github.com/pylover/easycli-todolist-demo>`_.
+

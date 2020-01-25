@@ -9,9 +9,8 @@ before_install:
 - pip install -r requirements-ci.txt
 install: pip install -e .
 script: py.test --cov=easycli tests
-after_success: 
-- coveralls
-- ./.travis-upload-doc.sh
+after_success: coveralls
+after_deploy: ./.travis-upload-doc.sh
 deploy:
   provider: pypi
   skip_cleanup: true

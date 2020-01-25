@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Python Module Index &#8212; easycli 1.5.0 documentation</title>
+    <title>ProgressBar &#8212; easycli 1.5.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,14 +14,9 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-
+    <link rel="next" title="API Reference" href="apireference.html" />
+    <link rel="prev" title="Tutorial: Todo List" href="tutorial.html" />
     <link href="_static/style.css" rel="stylesheet" type="text/css">
-
-
-    <script type="text/javascript">
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
 
   </head><body>
   
@@ -33,23 +28,18 @@
 
           <div class="body" role="main">
             
+  <div class="section" id="progressbar">
+<h1>ProgressBar<a class="headerlink" href="#progressbar" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">easycli</span> <span class="kn">import</span> <span class="n">ProgressBar</span>
 
-   <h1>Python Module Index</h1>
 
-   <div class="modindex-jumpbox">
-   <a href="#cap-e"><strong>e</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-e"><td></td><td>
-       <strong>e</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="apireference.html#module-easycli"><code class="xref">easycli</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+<span class="k">with</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># do slow job</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 
 
           </div>
@@ -68,9 +58,9 @@
 
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial: Todo List</a></li>
-<li class="toctree-l1"><a class="reference internal" href="progressbar.html">ProgressBar</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ProgressBar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apireference.html">API Reference</a></li>
 </ul>
 
@@ -78,6 +68,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tutorial.html" title="previous chapter">Tutorial: Todo List</a></li>
+      <li>Next: <a href="apireference.html" title="next chapter">API Reference</a></li>
   </ul></li>
 </ul>
 </div>

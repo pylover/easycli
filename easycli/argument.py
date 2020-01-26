@@ -1,9 +1,9 @@
 
 class Argument:
-    """Just a wrapper arround :meth:`argparse.ArgumentParser.add_argument`.
+    """Just a wrapper around :meth:`argparse.ArgumentParser.add_argument`.
 
-    So, except the ``completer`` keyword argument all positional ans keywork
-    arguments are the same as the :meth:`argparse.ArgumentParser.add_argument`.
+    So, except the ``completer`` keyword argument all positional and keywork
+    arguments are the same as :meth:`argparse.ArgumentParser.add_argument`.
 
     :param completer: see `argcomplete <https://argcomplete.readthedocs.io/en/latest/index.html#specifying-completers>`_
     """

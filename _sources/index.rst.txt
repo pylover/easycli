@@ -19,7 +19,7 @@ Welcome to easycli's documentation!
    :target: https://python.org
 
 
-Just a wrapper arround python ``argparse`` module to easily develop nested
+Just a wrapper around python ``argparse`` module to easily develop nested
 command line applications with autocompletion support like ``git``.
 
 
@@ -55,7 +55,6 @@ Contents
    :maxdepth: 2
 
    tutorial
-   progressbar
    apireference
 
 

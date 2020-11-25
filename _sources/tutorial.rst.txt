@@ -3,7 +3,7 @@ Tutorial: Todo List
 
 Let's develop a todo list using ``easycli``.
 
-it's highly recommended to use virtual environment before continue. I use
+it's highly recommended to use virtual environment before we continue. I use
 `virtualenvwrapper <https://virtualenvwrapper.readthedocs.io/en/latest/>`_.
 
 Create a virtual environment to isolate your hello world application from the 
@@ -19,7 +19,7 @@ rest of the system python packages.
    workon todo
  
 
-For the first, we're going to create a classic python module including a
+First, we're going to create a classic python module including a
 ``setup.py`` to be able to install it.
 
 
@@ -129,7 +129,7 @@ Test the ``-v/--version`` flag:
 Append Command
 ^^^^^^^^^^^^^^
 
-``functools`` helps to keep our code ``DRY``. Here is how to create a command
+``functools`` helps keep our code ``DRY``. Here is how to create a command
 to append a line ``list,item`` to a csv file.
 
 
@@ -166,7 +166,7 @@ to append a line ``list,item`` to a csv file.
 
 
 Add the ``Append`` command class to ``Todo.__arguments__`` collection without 
-instantiate it:
+instantiating it:
 
 
 .. code-block::
@@ -278,7 +278,7 @@ We need a command to show ``lists`` or ``items`` inside a ``list``.
 
 
 Add the ``Show`` command class to ``Todo.__arguments__`` collection without 
-instantiate it:
+instantiating it:
 
 
 .. code-block::
@@ -353,7 +353,7 @@ I love bash auto completion.
 So, the first step to do that is to set the ``__completion__`` class attribute
 of the ``Todo`` class.
 
-Thanks to `Argcomplete <http://localhost:8082/quickstart.html>`_.
+Thanks to `Argcomplete <https://argcomplete.readthedocs.io/en/latest/index.html#specifying-completers>`_.
 
 .. code-block::
 
@@ -397,11 +397,11 @@ As you see the ``completion`` sub command has been added.
    
    Sub commands:
      {install,uninstall}
-       install            Enables the autocompletion.
-       uninstall          Disables the autocompletion.
+       install            Enables autocompletion.
+       uninstall          Disables autocompletion.
 
 
-There is how to enable the bash auto completion
+This is how to enable the bash auto completion
 
 .. code-block::
 
@@ -428,9 +428,9 @@ Type ``todo`` and hit the ``TAB`` key twice to see the result.
 Dynamic Autocompletion
 ^^^^^^^^^^^^^^^^^^^^^^
 
-How about implement auto completion for ``list`` and or ``items``.
+How about implementing autocompletion for ``list`` and or ``items``.
 
-We have to write two functions for get available lists and items.
+We have to write two functions to get the available lists and items.
 
 .. code-block::
 
@@ -442,7 +442,7 @@ We have to write two functions for get available lists and items.
        list_ = parsed_args.list
        return list(i for l, i in getall() if l == list_)
 
-Thne modify our arguments to use those functions as their completers:
+Then modify our arguments to use those functions as their completers:
 
 .. code-block::
 

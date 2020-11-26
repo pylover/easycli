@@ -30,6 +30,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install -r requirements-ci.txt
         python -m pip install -e .
+        sudo cp `which bddcli-bootstrapper` /usr/local/bin
     - name: Lint with PyLama
       run: pylama
     - name: Test with pytest
@@ -75,5 +76,4 @@ jobs:
         release_name: ${{ github.ref }}
         draft: false
         prerelease: false 
-
 

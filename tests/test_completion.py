@@ -2,7 +2,7 @@ import os
 import tempfile
 from os import path
 
-from easycli import Root, SubCommand, Argument
+from easycli import Root
 
 from bddcli import stdout, status, stderr, Application, Given, when, given
 
@@ -58,4 +58,3 @@ def test_bash_autocompletion_user():
             assert stderr == 'The -s/--system-wide flag can not be used ' \
                 'within virtualenv\n'
             assert status == 1
-

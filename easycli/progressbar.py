@@ -1,8 +1,10 @@
-import fcntl, termios, struct
+import fcntl
+import termios
+import struct
 import subprocess
 from datetime import datetime
 
-from .colors import *
+from . import colors as C
 
 
 def terminal_size():
@@ -59,7 +61,7 @@ class ProgressBar:
 
     @property
     def estimated_time(self):
-        if self.value is 0:
+        if self.value == 0:
             et = 0
         else:
             td = datetime.utcnow() - self.start_time
@@ -74,17 +76,17 @@ class ProgressBar:
 
     def get_progressbar_color(self):
         return [
-            red,
-            lightred,
-            yellow,
-            lightyellow,
-            violet,
-            lightviolet,
-            beige,
-            lightbeige,
-            blue,
-            lightblue,
-            green,
+            C.red,
+            C.lightred,
+            C.yellow,
+            C.lightyellow,
+            C.violet,
+            C.lightviolet,
+            C.beige,
+            C.lightbeige,
+            C.blue,
+            C.lightblue,
+            C.green,
         ][self.percent // 10]
 
     def _invalidate(self):
@@ -97,11 +99,11 @@ class ProgressBar:
             self.get_progressbar_color(),
             percent,
             progress,
-            clear,
+            C.clear,
             self.time,
-            yellow,
+            C.yellow,
             self.estimated_time,
-            clear
+            C.clear
         ))
         print(line, end='', flush=False)
         print(' ' * (self.terminal_width - len(line)), end='\r', flush=True)
@@ -117,10 +119,8 @@ class ProgressBar:
 
 
 class LineReaderProgressBar(ProgressBar):
-    """
-    A proxy for IO file, with progressbar for reading file line by line.
+    """A proxy for IO file, with progressbar for reading file line by line."""
 
-    """
     def __init__(self, filename, mode='r'):
         self.filename = filename
         self.file = open(filename, mode)
@@ -152,4 +152,3 @@ class LineReaderProgressBar(ProgressBar):
     def __next__(self):
         self.increment()
         return self.file.__next__()
-

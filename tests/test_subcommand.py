@@ -70,4 +70,3 @@ def test_subcommand():
 
 if __name__ == '__main__':
     Foo().main(['-h'])
-

@@ -1,3 +1,5 @@
 coveralls
 bddcli >= 2.5, < 3
 pytest-cov
+pylama
+

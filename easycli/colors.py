@@ -42,4 +42,3 @@ blightwhite = '\33[107m'
 # styles
 bold = '\33[1m'
 italic = '\33[3m'
-

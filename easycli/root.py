@@ -1,6 +1,5 @@
 import sys
 import argparse
-import traceback
 from os import path
 
 from .command import Command
@@ -58,7 +57,7 @@ class Root(Command):
         return args.func(args)
 
     def main(self, argv=None):
-        """Call this function as the main entry point for your cli application
+        """Call this function as the main entry point for your cli application.
 
         :param argv: If not given, :attr:`sys.argv` will be used.
         :return: exit status
@@ -73,7 +72,5 @@ class Root(Command):
 
     @classmethod
     def quickstart(cls, argv=None):
-        """Shorthand for ``Root().main()``
-        """
+        """Shorthand for ``Root().main()``."""
         return cls().main(argv)
-

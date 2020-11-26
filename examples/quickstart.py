@@ -51,7 +51,5 @@ class Example(Root):
         return super().__call__(args)
 
 
-
 if __name__ == '__main__':
     Example().main()
-

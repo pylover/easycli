@@ -15,10 +15,10 @@ setup(
     author='Vahid Mardani',
     author_email='vahid.mardani@gmail.com',
     url='http://github.com/pylover/easycli',
-    description='Easily define your Command line and sub-commands using ' \
+    description='Easily define your Command line and sub-commands using '
         'argparse.',
     long_description=open('README.md').read(),
-    long_description_content_type='text/markdown',  # This is important!
+    long_description_content_type='text/markdown',
     install_requires=[
         'argcomplete'
     ],
@@ -35,4 +35,3 @@ setup(
         'Topic :: Software Development',
     ]
 )
-

@@ -19,8 +19,8 @@ class CompletionInstaller(SubCommand):
         Argument(
             '-s', '--system-wide',
             action='store_true',
-            help=f'Add the PYTHON_ARGCOMPLETE_OK into first 1024 bytes of ' \
-                f'the  {sys.argv[0]}'
+            help=f'Add the PYTHON_ARGCOMPLETE_OK into first 1024 bytes of the'
+                 f'{sys.argv[0]}'
         )
     ]
 
@@ -28,8 +28,8 @@ class CompletionInstaller(SubCommand):
         if 'VIRTUAL_ENV' in os.environ:
             if args.system_wide:
                 print(
-                    'The -s/--system-wide flag can not be used within ' \
-                        'virtualenv',
+                    'The -s/--system-wide flag can not be used within '
+                    'virtualenv',
                     file=sys.stderr
                 )
                 return 1
@@ -64,8 +64,8 @@ class CompletionInstaller(SubCommand):
         if line in content:
             print(
                 'The autocompletion is already activated.\n'
-                f'it means the line:\n\n    {line}\nwas found in file ' \
-                    '{path.abspath(filename)}',
+                f'it means the line:\n\n    {line}\nwas found in file '
+                f'{path.abspath(filename)}',
                 file=sys.stderr
             )
             return 1
@@ -73,8 +73,10 @@ class CompletionInstaller(SubCommand):
         with open(filename, mode='a') as f:
             f.write(line)
 
-        print(f'The line:\n\n    {line}\nwas added into ' \
-              f'{path.abspath(filename)}')
+        print(
+            f'The line:\n\n    {line}\nwas added into '
+            f'{path.abspath(filename)}'
+        )
 
     def install_systemwide(self):  # pragma: no cover
         line = '# PYTHON_ARGCOMPLETE_OK'
@@ -173,8 +175,8 @@ class CompletionUninstaller(SubCommand):
             )
         else:
             print(
-                f'The autocompletion is already deactivated.\n' \
-                f'it means the line:\n\n' \
+                f'The autocompletion is already deactivated.\n'
+                f'it means the line:\n\n'
                 f'    {line}\nwas not found in file {path.abspath(filename)}',
                 file=sys.stderr
             )
@@ -188,4 +190,3 @@ class Completion(SubCommand):
         CompletionInstaller,
         CompletionUninstaller
     ]
-

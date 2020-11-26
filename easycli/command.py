@@ -4,8 +4,7 @@ from .argument import Argument
 
 
 class Command(metaclass=ABCMeta):
-    """Abstract base class for all commands.
-    """
+    """Abstract base class for all commands."""
 
     #: List of both :class:`.Command` class or instance of :class:`.Argument`
     __arguments__ = []
@@ -42,17 +41,19 @@ class Command(metaclass=ABCMeta):
         raise NotImplementedError()
 
     def __call__(self, args):
-        """Executes the command
+        """Execute the command.
+
+        This method should be implemented in the child class to do what the
+        command does.
 
         :param args: What :meth:`argparse.ArgumentParser.parse_args` returns.
         """
-
         if self._parser:
             self._parser.print_help()
 
 
 class SubCommand(Command):
-    """Base class for sub commands:
+    """Base class for sub commands.
 
     .. code-block:: bash
 
@@ -101,4 +102,3 @@ class SubCommand(Command):
         parser = self._parent_subparsers.add_parser(self.__command__, **kw)
         parser.set_defaults(func=self)
         return parser
-

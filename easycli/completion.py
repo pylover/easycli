@@ -81,6 +81,7 @@ class CompletionInstaller(SubCommand):
     def install_systemwide(self):  # pragma: no cover
         line = '# PYTHON_ARGCOMPLETE_OK'
         filename = sys.argv[0]
+        from pudb import set_trace; set_trace()
         with open(filename) as f:
 
             content = f.read(1024)

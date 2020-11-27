@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8']
+        python-version: ['3.5', '3.6', '3.7', '3.8']
 
     steps:
     - uses: actions/checkout@v2
@@ -32,9 +32,9 @@ jobs:
         python -m pip install -e .
         sudo cp `which bddcli-bootstrapper` /usr/local/bin
     - name: Lint with PyLama
-      run: pylama
+      run: make lint
     - name: Test with pytest
-      run: pytest --cov=easycli tests
+      run: make coverage 
     - name: Coveralls
       run: coveralls
       env:

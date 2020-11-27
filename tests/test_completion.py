@@ -46,15 +46,19 @@ def test_bash_autocompletion_virtualenv():
             when(['completion', 'uninstall'])
 
 
-def test_bash_autocompletion_user():
-    app = Application('foo', 'tests.test_completion:Foo.quickstart')
-    with tempfile.TemporaryDirectory() as homedir:
-        os.mkdir(path.join(homedir, 'bin'))
-        with Given(app, ['completion'], environ={'HOME': homedir}):
-            assert stdout == EXPECTED_HELP
-            assert status == 0
+# def test_bash_autocompletion_user():
+#     app = Application('foo', 'tests.test_completion:Foo.quickstart')
+#     with tempfile.TemporaryDirectory() as homedir:
+#         os.mkdir(path.join(homedir, 'bin'))
+#         with Given(app, ['completion'], environ={'HOME': homedir}):
+#             assert stdout == EXPECTED_HELP
+#             assert status == 0
+#
+#             when(given + ['install', '-s'])
+#             assert stderr == 'The -s/--system-wide flag can not be used ' \
+#                 'within virtualenv\n'
+#             assert status == 1
 
-            when(given + ['install', '-s'])
-            assert stderr == 'The -s/--system-wide flag can not be used ' \
-                'within virtualenv\n'
-            assert status == 1
+
+if __name__ == '__main__':
+    Foo().main(['-h'])

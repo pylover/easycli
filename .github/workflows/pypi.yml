@@ -20,7 +20,7 @@ jobs:
         python -m pip install -r requirements-ci.txt
         python -m pip install -e .
     - name: Create distributions
-      run: python setup.py sdist
+      run: make dist
     - name: Publish a Python distribution to PyPI
       uses: pypa/gh-action-pypi-publish@master
       with:

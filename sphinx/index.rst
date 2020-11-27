@@ -9,8 +9,8 @@ Welcome to easycli's documentation!
 .. image:: http://img.shields.io/pypi/v/easycli.svg
    :target: https://pypi.python.org/pypi/easycli
  
-.. image:: https://travis-ci.org/pylover/easycli.svg?branch=master
-   :target: https://travis-ci.org/pylover/easycli
+.. image:: https://github.com/pylover/easycli/workflows/Build/badge.svg?branch=master
+   :target: https://github.com/pylover/easycli/actions
 
 .. image:: https://coveralls.io/repos/github/pylover/easycli/badge.svg?branch=master
    :target: https://coveralls.io/github/pylover/easycli?branch=master

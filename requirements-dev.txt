@@ -1,4 +1,3 @@
--r requirements-ci.txt
 -r requirements-doc.txt
 pytest-pudb
 ipython

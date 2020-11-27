@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Reference &#8212; easycli 1.6.0 documentation</title>
+    <title>API Reference &#8212; easycli 1.7.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,7 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Tutorial: Todo List" href="tutorial.html" />
+    <link rel="prev" title="ProgressBar" href="progressbar.html" />
     <link href="_static/style.css" rel="stylesheet" type="text/css">
 
   </head><body>
@@ -63,7 +63,9 @@
 <dl class="py method">
 <dt id="easycli.Command.__call__">
 <code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Command.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes the command</p>
+<dd><p>Execute the command.</p>
+<p>This method should be implemented in the child class to do what the
+command does.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>args</strong> – What <a class="reference external" href="https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser.parse_args" title="(in Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">argparse.ArgumentParser.parse_args()</span></code></a> returns.</p>
@@ -80,7 +82,7 @@
 <dt id="easycli.SubCommand">
 <em class="property">class </em><code class="sig-prename descclassname">easycli.</code><code class="sig-name descname">SubCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">subparsers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.SubCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">easycli.command.Command</span></code></p>
-<p>Base class for sub commands:</p>
+<p>Base class for sub commands.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root subcommand subsubcommand
 </pre></div>
 </div>
@@ -145,7 +147,7 @@ uninstall will be added to <code class="docutils literal notranslate"><span clas
 <dl class="py method">
 <dt id="easycli.Root.main">
 <code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Root.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call this function as the main entry point for your cli application</p>
+<dd><p>Call this function as the main entry point for your cli application.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>argv</strong> – If not given, <code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.argv</span></code> will be used.</p>
@@ -159,7 +161,7 @@ uninstall will be added to <code class="docutils literal notranslate"><span clas
 <dl class="py method">
 <dt id="easycli.Root.quickstart">
 <em class="property">classmethod </em><code class="sig-name descname">quickstart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Root.quickstart" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">Root().main()</span></code></p>
+<dd><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">Root().main()</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -218,6 +220,7 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial: Todo List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="progressbar.html">ProgressBar</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#command-class">Command Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#subcommand-class">SubCommand Class</a></li>
@@ -232,7 +235,7 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="tutorial.html" title="previous chapter">Tutorial: Todo List</a></li>
+      <li>Previous: <a href="progressbar.html" title="previous chapter">ProgressBar</a></li>
   </ul></li>
 </ul>
 </div>

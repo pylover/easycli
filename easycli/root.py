@@ -66,9 +66,11 @@ class Root(Command):
         args = self._parser.parse_args(argv)
 
         if hasattr(args, 'func'):
-            return self._execute_subcommand(args)
+            status = self._execute_subcommand(args)
         else:
-            return self(args)
+            status = self(args)
+
+        return status or 0
 
     @classmethod
     def quickstart(cls, argv=None):

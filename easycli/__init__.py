@@ -5,4 +5,4 @@ from .root import Root
 from .progressbar import ProgressBar
 
 
-__version__ = '1.7.2'
+__version__ = '1.7.3'

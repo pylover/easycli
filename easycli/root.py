@@ -53,6 +53,9 @@ class Root(Command):
             description=self.__help__
         )
 
+    def _parse_arguments(self, argv):
+        return self._parser.parse_args(argv)
+
     def _execute_subcommand(self, args):
         return args.func(args)
 
@@ -62,8 +65,7 @@ class Root(Command):
         :param argv: If not given, :attr:`sys.argv` will be used.
         :return: exit status
         """
-        # Parse Argument
-        args = self._parser.parse_args(argv)
+        args = self._parse_arguments(argv)
 
         if hasattr(args, 'func'):
             status = self._execute_subcommand(args)

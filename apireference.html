@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Reference &#8212; easycli 1.9.0 documentation</title>
+    <title>API Reference &#8212; easycli 1.9.1 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -188,6 +188,9 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 <dt id="easycli.Mutex">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">easycli.</span></code><code class="sig-name descname"><span class="pre">Mutex</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Mutex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mutually exclusive group.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.9.</span></p>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">Root</span><span class="p">):</span>
     <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">Mutex</span><span class="p">(</span>

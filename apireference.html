@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Reference &#8212; easycli 1.8.0 documentation</title>
+    <title>API Reference &#8212; easycli 1.9.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -182,6 +182,26 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 </dd></dl>
 
 </div>
+<div class="section" id="mutex-class">
+<h2>Mutex Class<a class="headerlink" href="#mutex-class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="easycli.Mutex">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">easycli.</span></code><code class="sig-name descname"><span class="pre">Mutex</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Mutex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutually exclusive group.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">Root</span><span class="p">):</span>
+    <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Mutex</span><span class="p">(</span>
+            <span class="n">Argument</span><span class="p">(</span><span class="s1">&#39;--bar&#39;</span><span class="p">),</span>
+            <span class="n">Argument</span><span class="p">(</span><span class="s1">&#39;--baz&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="o">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
 <div class="section" id="progressbar-class">
 <h2>ProgressBar Class<a class="headerlink" href="#progressbar-class" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
@@ -225,6 +245,7 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 <li class="toctree-l2"><a class="reference internal" href="#subcommand-class">SubCommand Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-class">Root Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#argument-class">Argument Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mutex-class">Mutex Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#progressbar-class">ProgressBar Class</a></li>
 </ul>
 </li>

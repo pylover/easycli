@@ -40,6 +40,11 @@ Argument Class
 
 .. autoclass:: Argument
 
+Mutex Class
+^^^^^^^^^^^ 
+
+.. autoclass:: Mutex
+
 
 ProgressBar Class
 ^^^^^^^^^^^^^^^^^

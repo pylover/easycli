@@ -30,6 +30,8 @@ class Argument:
 class Mutex(Argument):
     """Mutually exclusive group.
 
+    .. versionadded:: 1.9
+
     .. code-block::
 
        class Foo(Root):
@@ -49,7 +51,7 @@ class Mutex(Argument):
         self.required = required
 
     def register(self, parser):
-        group = parser.add_mutually_exclusive_group()
+        group = parser.add_mutually_exclusive_group(required=self.required)
         for a in self._args:
             a.register(group)
 

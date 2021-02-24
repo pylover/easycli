@@ -1,5 +1,5 @@
 """Uncomplicated OOP command line argument parser."""
-from .argument import Argument
+from .argument import Argument, Mutex
 from .command import Command, SubCommand
 from .root import Root
 from .progressbar import ProgressBar

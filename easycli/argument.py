@@ -25,3 +25,32 @@ class Argument:
             argument.completer = self.completer
 
         return argument
+
+
+class Mutex(Argument):
+    """Mutually exclusive group.
+
+    .. code-block::
+
+       class Foo(Root):
+           __arguments__ = [
+               Mutex(
+                   Argument('--bar'),
+                   Argument('--baz')
+               )
+           ]
+
+           ...
+
+    """
+
+    def __init__(self, *args, required=False):
+        super().__init__(*args)
+        self.required = required
+
+    def register(self, parser):
+        group = parser.add_mutually_exclusive_group()
+        for a in self._args:
+            a.register(group)
+
+        return group

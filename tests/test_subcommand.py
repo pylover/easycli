@@ -13,6 +13,8 @@ class Bar(SubCommand):
 
     def __call__(self, args):
         print('Bar done:', args.baz)
+        if args.baz:
+            return 1
 
 
 class Foo(Root):
@@ -65,7 +67,7 @@ def test_subcommand():
         when(['bar', '--baz'])
         assert stderr == ''
         assert stdout == 'Bar done: True\n'
-        assert status == 0
+        assert status == 1
 
 
 if __name__ == '__main__':

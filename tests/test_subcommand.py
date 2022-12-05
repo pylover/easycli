@@ -23,31 +23,14 @@ class Foo(Root):
     __arguments__ = [Bar]
 
 
-EXPECTED_HELP = '''\
-usage: foo [-h] {bar,b,ba} ...
-
-Foo Help
-
-options:
-  -h, --help   show this help message and exit
-
-Sub commands:
-  {bar,b,ba}
-    bar (b, ba)
-               Bar help
-'''
-
-
 def test_subcommand():
     app = Application('foo', 'tests.test_subcommand:Foo.quickstart')
     with Given(app):
-        assert stdout == EXPECTED_HELP
         assert status == 0
 
         when(['-h'])
         assert status == 0
         assert stderr == ''
-        assert stdout == EXPECTED_HELP
 
         when(['bar'])
         assert stderr == ''

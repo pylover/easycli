@@ -39,7 +39,6 @@ def test_bash_autocompletion_virtualenv():
 #     with tempfile.TemporaryDirectory() as homedir:
 #         os.mkdir(path.join(homedir, 'bin'))
 #         with Given(app, ['completion'], environ={'HOME': homedir}):
-#             assert stdout == EXPECTED_HELP
 #             assert status == 0
 #
 #             when(given + ['install', '-s'])

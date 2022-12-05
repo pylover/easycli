@@ -17,15 +17,6 @@ class Foo(Root):
         print('foo done')
 
 
-EXPECTED_HELP = '''usage: foo [-h]
-
-Foo Help
-
-options:
-  -h, --help  show this help message and exit
-'''
-
-
 EXPECTED_USAGE = '''\
 usage: foo [-h] [--bar | --baz]
 foo: error: argument --baz: not allowed with argument --bar

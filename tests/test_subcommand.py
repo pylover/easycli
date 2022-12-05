@@ -28,7 +28,7 @@ usage: foo [-h] {bar,b,ba} ...
 
 Foo Help
 
-optional arguments:
+options:
   -h, --help   show this help message and exit
 
 Sub commands:

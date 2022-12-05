@@ -44,6 +44,9 @@ class CompletionInstaller(SubCommand):
 
     def install_virtualenv(self):
         sourcefile = path.join(os.environ['VIRTUAL_ENV'], 'bin/postactivate')
+        if not path.exists(sourcefile):
+            sourcefile = path.join(os.environ['VIRTUAL_ENV'], 'bin/activate')
+
         result = self.install_file(sourcefile)
         if not result:
             print_venv_restart_help()

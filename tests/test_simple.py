@@ -15,7 +15,7 @@ EXPECTED_HELP = '''usage: foo [-h]
 
 Foo Help
 
-optional arguments:
+options:
   -h, --help  show this help message and exit
 '''
 

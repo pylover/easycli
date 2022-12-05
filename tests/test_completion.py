@@ -15,7 +15,7 @@ class Foo(Root):
 
 EXPECTED_HELP = '''usage: foo completion [-h] {install,uninstall} ...
 
-optional arguments:
+options:
   -h, --help           show this help message and exit
 
 Sub commands:
@@ -30,6 +30,7 @@ def test_bash_autocompletion_virtualenv():
     with tempfile.TemporaryDirectory() as venvdir:
         os.mkdir(path.join(venvdir, 'bin'))
         with Given(app, ['completion'], environ={'VIRTUAL_ENV': venvdir}):
+            assert stderr == ''
             assert stdout == EXPECTED_HELP
             assert status == 0
 

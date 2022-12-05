@@ -11,15 +11,6 @@ class Foo(Root):
         print('foo done')
 
 
-EXPECTED_HELP = '''usage: foo [-h]
-
-Foo Help
-
-options:
-  -h, --help  show this help message and exit
-'''
-
-
 EXPECTED_USAGE = '''usage: foo [-h]
 foo: error: unrecognized arguments: --invalid
 '''
@@ -35,7 +26,6 @@ def test_simple():
         when(['-h'])
         assert status == 0
         assert stderr == ''
-        assert stdout == EXPECTED_HELP
 
         when(['--invalid'])
         assert status == 2

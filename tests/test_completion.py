@@ -13,25 +13,12 @@ class Foo(Root):
     __completion__ = True
 
 
-EXPECTED_HELP = '''usage: foo completion [-h] {install,uninstall} ...
-
-options:
-  -h, --help           show this help message and exit
-
-Sub commands:
-  {install,uninstall}
-    install            Enables the autocompletion.
-    uninstall          Disables the autocompletion.
-'''
-
-
 def test_bash_autocompletion_virtualenv():
     app = Application('foo', 'tests.test_completion:Foo.quickstart')
     with tempfile.TemporaryDirectory() as venvdir:
         os.mkdir(path.join(venvdir, 'bin'))
         with Given(app, ['completion'], environ={'VIRTUAL_ENV': venvdir}):
             assert stderr == ''
-            assert stdout == EXPECTED_HELP
             assert status == 0
 
             when(given + ['install', '-s'])

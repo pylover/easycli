@@ -4,7 +4,7 @@ from os import path
 
 from easycli import Root
 
-from bddcli import stdout, status, stderr, Application, Given, when, given
+from bddcli import status, stderr, Application, Given, when, given
 
 
 class Foo(Root):

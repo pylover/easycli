@@ -1,4 +1,0 @@
--r requirements-ci.txt
-sphinx
-sphinx-autobuild
-

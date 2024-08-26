@@ -1,4 +1,0 @@
--r requirements-doc.txt
-pytest-pudb
-ipython
-ropevim

@@ -13,6 +13,8 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import os.path
+import re
 
 
 # -- Project information -----------------------------------------------------
@@ -21,10 +23,8 @@ project = 'easycli'
 copyright = '2020, Vahid Mardani'
 author = 'Vahid Mardani'
 
-# The full version, including alpha/beta/rc tags
-import os.path
-import re
 
+# The full version, including alpha/beta/rc tags
 # reading package's version (same way sqlalchemy does)
 with open(
     os.path.join(os.path.dirname(__file__), '../easycli', '__init__.py')
@@ -45,9 +45,9 @@ release = package_version
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  'sphinx.ext.doctest',
-  'sphinx.ext.autodoc',
-  'sphinx.ext.intersphinx',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -76,8 +76,5 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/3.6', None),
 }
 
-autodoc_default_flags = [
-#    'members',
-#    'show-inheritance',
-]
 
+autodoc_default_flags = []

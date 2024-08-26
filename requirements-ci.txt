@@ -1,4 +1,0 @@
-coveralls
-bddcli >= 2.9.4, < 3
-pytest-cov
-pylama

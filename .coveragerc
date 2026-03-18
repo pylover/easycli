@@ -1,4 +1,5 @@
 [run]
+patch = subprocess
 omit =
 	easycli/completion.py
 	easycli/progressbar.py

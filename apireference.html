@@ -1,20 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>API Reference &#8212; easycli 1.9.3 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <title>API Reference &#8212; easycli 1.9.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=38ba398c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="ProgressBar" href="progressbar.html" />
@@ -31,40 +28,40 @@
           <div class="body" role="main">
             
   <section id="module-easycli">
-<span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-easycli" title="Permalink to this heading">¶</a></h1>
+<span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-easycli" title="Link to this heading">¶</a></h1>
 <section id="command-class">
-<h2>Command Class<a class="headerlink" href="#command-class" title="Permalink to this heading">¶</a></h2>
+<h2>Command Class<a class="headerlink" href="#command-class" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="easycli.Command">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><a class="headerlink" href="#easycli.Command" title="Permalink to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><a class="headerlink" href="#easycli.Command" title="Link to this definition">¶</a></dt>
 <dd><p>Abstract base class for all commands.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="easycli.Command.__arguments__">
-<span class="sig-name descname"><span class="pre">__arguments__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#easycli.Command.__arguments__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__arguments__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#easycli.Command.__arguments__" title="Link to this definition">¶</a></dt>
 <dd><p>List of both <a class="reference internal" href="#easycli.Command" title="easycli.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a> class or instance of <a class="reference internal" href="#easycli.Argument" title="easycli.Argument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Argument</span></code></a></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="easycli.Command.__command__">
-<span class="sig-name descname"><span class="pre">__command__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#easycli.Command.__command__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__command__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#easycli.Command.__command__" title="Link to this definition">¶</a></dt>
 <dd><p>str, command name</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="easycli.Command.__aliases__">
-<span class="sig-name descname"><span class="pre">__aliases__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#easycli.Command.__aliases__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__aliases__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#easycli.Command.__aliases__" title="Link to this definition">¶</a></dt>
 <dd><p>List of aliases for the <a class="reference internal" href="#easycli.Command.__command__" title="easycli.Command.__command__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__command__</span></code></a></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="easycli.Command.__help__">
-<span class="sig-name descname"><span class="pre">__help__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#easycli.Command.__help__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__help__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#easycli.Command.__help__" title="Link to this definition">¶</a></dt>
 <dd><p>Help message to show when -h/–help</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="easycli.Command.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Command.__call__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Command.__call__" title="Link to this definition">¶</a></dt>
 <dd><p>Execute the command.</p>
 <p>This method should be implemented in the child class to do what the
 command does.</p>
@@ -79,13 +76,13 @@ command does.</p>
 
 </section>
 <section id="subcommand-class">
-<h2>SubCommand Class<a class="headerlink" href="#subcommand-class" title="Permalink to this heading">¶</a></h2>
+<h2>SubCommand Class<a class="headerlink" href="#subcommand-class" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="easycli.SubCommand">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">SubCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subparsers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.SubCommand" title="Permalink to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">SubCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subparsers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.SubCommand" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#easycli.Command" title="easycli.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
 <p>Base class for sub commands.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root subcommand subsubcommand
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root<span class="w"> </span>subcommand<span class="w"> </span>subsubcommand
 </pre></div>
 </div>
 <p>For example, in <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">..</span></code> scenario <code class="docutils literal notranslate"><span class="pre">push</span></code> is a sub command.</p>
@@ -114,10 +111,10 @@ shell sub command behavior.</p>
 
 </section>
 <section id="root-class">
-<h2>Root Class<a class="headerlink" href="#root-class" title="Permalink to this heading">¶</a></h2>
+<h2>Root Class<a class="headerlink" href="#root-class" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="easycli.Root">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Root</span></span><a class="headerlink" href="#easycli.Root" title="Permalink to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Root</span></span><a class="headerlink" href="#easycli.Root" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#easycli.Command" title="easycli.command.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a></p>
 <p>base class for the CLI entry point.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -141,14 +138,14 @@ shell sub command behavior.</p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="easycli.Root.__completion__">
-<span class="sig-name descname"><span class="pre">__completion__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#easycli.Root.__completion__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__completion__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#easycli.Root.__completion__" title="Link to this definition">¶</a></dt>
 <dd><p>If True, a completion sub-command with two subsub-commands: install and
 uninstall will be added to <code class="docutils literal notranslate"><span class="pre">self.__arguments__</span></code> collection.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="easycli.Root.main">
-<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Root.main" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Root.main" title="Link to this definition">¶</a></dt>
 <dd><p>Call this function as the main entry point for your cli application.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -162,7 +159,7 @@ uninstall will be added to <code class="docutils literal notranslate"><span clas
 
 <dl class="py method">
 <dt class="sig sig-object py" id="easycli.Root.quickstart">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quickstart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Root.quickstart" title="Permalink to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">quickstart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Root.quickstart" title="Link to this definition">¶</a></dt>
 <dd><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">Root().main()</span></code>.</p>
 </dd></dl>
 
@@ -170,10 +167,10 @@ uninstall will be added to <code class="docutils literal notranslate"><span clas
 
 </section>
 <section id="argument-class">
-<h2>Argument Class<a class="headerlink" href="#argument-class" title="Permalink to this heading">¶</a></h2>
+<h2>Argument Class<a class="headerlink" href="#argument-class" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="easycli.Argument">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Argument" title="Permalink to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Argument" title="Link to this definition">¶</a></dt>
 <dd><p>Just a wrapper around <a class="reference external" href="https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser.add_argument" title="(in Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">argparse.ArgumentParser.add_argument()</span></code></a>.</p>
 <p>So, except the <code class="docutils literal notranslate"><span class="pre">completer</span></code> keyword argument all positional and keywork
 arguments are the same as <a class="reference external" href="https://docs.python.org/3.6/library/argparse.html#argparse.ArgumentParser.add_argument" title="(in Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">argparse.ArgumentParser.add_argument()</span></code></a>.</p>
@@ -186,13 +183,13 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 
 </section>
 <section id="mutex-class">
-<h2>Mutex Class<a class="headerlink" href="#mutex-class" title="Permalink to this heading">¶</a></h2>
+<h2>Mutex Class<a class="headerlink" href="#mutex-class" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="easycli.Mutex">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Mutex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Mutex" title="Permalink to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">Mutex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.Mutex" title="Link to this definition">¶</a></dt>
 <dd><p>Mutually exclusive group.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.</span></p>
+<p><span class="versionmodified added">Added in version 1.9.</span></p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">Root</span><span class="p">):</span>
     <span class="n">__arguments__</span> <span class="o">=</span> <span class="p">[</span>
@@ -209,10 +206,10 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 
 </section>
 <section id="progressbar-class">
-<h2>ProgressBar Class<a class="headerlink" href="#progressbar-class" title="Permalink to this heading">¶</a></h2>
+<h2>ProgressBar Class<a class="headerlink" href="#progressbar-class" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="easycli.ProgressBar">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">ProgressBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.ProgressBar" title="Permalink to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">easycli.</span></span><span class="sig-name descname"><span class="pre">ProgressBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easycli.ProgressBar" title="Link to this definition">¶</a></dt>
 <dd><p>Context manager to show and update progress bar.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
@@ -231,7 +228,7 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">easycli</a></h1>
 
@@ -242,7 +239,16 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
 
 
 
-<h3>Navigation</h3>
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial: Todo List</a></li>
 <li class="toctree-l1"><a class="reference internal" href="progressbar.html">ProgressBar</a></li>
@@ -265,16 +271,6 @@ arguments are the same as <a class="reference external" href="https://docs.pytho
   </ul></li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 

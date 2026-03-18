@@ -137,6 +137,9 @@ class CompletionUninstaller(SubCommand):
 
     def uninstall_from_virtualenv(self):
         sourcefile = path.join(os.environ['VIRTUAL_ENV'], 'bin/postactivate')
+        if not path.exists(sourcefile):
+            sourcefile = path.join(os.environ['VIRTUAL_ENV'], 'bin/activate')
+
         result = self.uninstall_from_file(sourcefile)
         if not result:
             print_venv_restart_help()

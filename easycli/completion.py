@@ -7,9 +7,9 @@ from .command import SubCommand
 
 
 def print_venv_restart_help():
-    venv = path.basename(os.environ['VIRTUAL_ENV'])
+    venv = os.environ['VIRTUAL_ENV']
     print('Please run this to apply changes auto completion:\n')
-    print(f'    deactivate && source activate.sh\n')
+    print(f'    deactivate && source {venv}/bin/activate.sh\n')
 
 
 class CompletionInstaller(SubCommand):

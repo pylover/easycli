@@ -6,10 +6,9 @@ from .argument import Argument
 from .command import SubCommand
 
 
-def print_venv_restart_help():
-    venv = os.environ['VIRTUAL_ENV']
-    print('Please run this to apply changes auto completion:\n')
-    print(f'    deactivate && source {venv}/bin/activate.sh\n')
+def print_venvrestart_guide(filename):
+    print(f'Please source {filename} to apply changes')
+    print('NOTE: if you\'re inside a virtual env, please deactivate first')
 
 
 class CompletionInstaller(SubCommand):
@@ -24,7 +23,7 @@ class CompletionInstaller(SubCommand):
         ),
         Argument(
             '--rcfile',
-            metavar="FILENAME',
+            metavar='FILENAME',
             help='The rc/activation file to register completion function'
         )
     ]
@@ -33,7 +32,7 @@ class CompletionInstaller(SubCommand):
         filename = sys.argv[0]
         with open(filename) as f:
             content = f.read(1024)
-            assert line not in content:
+            assert line not in content
             content += f.read()
 
         lines = content.splitlines()
@@ -49,14 +48,6 @@ class CompletionInstaller(SubCommand):
 
         # virtual env
         if 'VIRTUAL_ENV' in os.environ:
-            if args.system_wide:
-                print(
-                    'The -s/--system-wide flag can not be used within '
-                    'virtualenv',
-                    file=sys.stderr
-                )
-                raise None
-
             rcfile = path.join(os.environ['VIRTUAL_ENV'], 'bin/postactivate')
             if not path.exists(rcfile):
                 rcfile = path.join(os.environ['VIRTUAL_ENV'], 'bin/activate')
@@ -65,48 +56,7 @@ class CompletionInstaller(SubCommand):
 
         return path.join(os.environ['HOME'], '.bashrc')
 
-    def __call__(self, args):
-        try:
-            if args.system_wide:  # pragma: no cover
-                line = '# PYTHON_ARGCOMPLETE_OK'
-                filename = sys.argv[0]
-                self._systemwide_install(filename, line)
-
-            else:
-                line = 'eval "$(register-python-argcomplete %s)"\n' % \
-                    path.basename(sys.argv[0])
-                filename = self._find_rcfile(args)
-                self.install_file(filename)
-
-        except AssertionError:
-            print(
-                'The autocompletion is already activated.\n'
-                f'it means the line:\n\n    {line}\nwas found in file '
-                f'{path.abspath(filename)}',
-                file=sys.stderr
-            )
-            return 1
-
-        ##############
-        print(f'The line: {line} was added into: {path.abspath(filename)}')
-            print_venv_restart_help()
-        if args.rcfile:
-            if not result:
-                print_venv_restart_help()
-            return 1
-
-                return 1
-
-            self.install_virtualenv()
-
-
-        else:
-            self.install_user()
-
-    def install_file(self, filename):
-        line = 'eval "$(register-python-argcomplete %s)"\n' % \
-            path.basename(sys.argv[0])
-
+    def _install(self, filename, line):
         with open(filename) as f:
             content = f.readlines()
 
@@ -119,6 +69,40 @@ class CompletionInstaller(SubCommand):
             f'{path.abspath(filename)}'
         )
 
+    def __call__(self, args):
+        try:
+            if args.system_wide:  # pragma: no cover
+                if 'VIRTUAL_ENV' in os.environ:
+                    print(
+                        'The -s/--system-wide flag can not be used within '
+                        'virtualenv',
+                        file=sys.stderr
+                    )
+                    return 1
+
+                line = '# PYTHON_ARGCOMPLETE_OK'
+                filename = path.abspath(sys.argv[0])
+                self._systemwide_install(filename, line)
+
+            else:
+                line = 'eval "$(register-python-argcomplete %s)"\n' % \
+                    path.basename(sys.argv[0])
+                filename = path.abspath(self._find_rcfile(args))
+                self._install(filename, line)
+
+        except AssertionError:
+            print(
+                'The autocompletion is already activated.\n'
+                f'it means the line:\n\n    {line}\nwas found in file '
+                f'{filename}',
+                file=sys.stderr
+            )
+            return 1
+
+        print(f'The line: {line} was added into: {filename}')
+        print_venvrestart_guide(filename)
+
+
 class CompletionUninstaller(SubCommand):
     __command__ = 'uninstall'
     __help__ = 'Disables the autocompletion.'
@@ -127,6 +111,11 @@ class CompletionUninstaller(SubCommand):
             '-s', '--system-wide',
             action='store_true',
             help=f'Remove the PYTHON_ARGCOMPLETE_OK from {sys.argv[0]}'
+        ),
+        Argument(
+            '--rcfile',
+            metavar='FILENAME',
+            help='The rc/activation file to unregister completion function'
         )
     ]
 
